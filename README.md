@@ -14,12 +14,13 @@ Clone the repository:
 ```bash
 git clone 
 cd transaction-api-server
-Start the containers:
 ```
 
+Start the containers:
 ```bash
 docker-compose up -d
 ```
+
 This will start a PostgreSQL server (postgres) and the transaction API (transaction-api-server) running on port 50051.
 
 Check the service logs:
@@ -200,6 +201,5 @@ Transaction API (transaction-api-server): gRPC service running on port 50051.
 To stop the containers, run:
 
 ```bash
-sh
-docker-compose down
+sh script\clean_up.sh
 ```
