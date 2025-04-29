@@ -33,162 +33,55 @@ gRPC Endpoints
 Create Account
 
 ```bash
-Request:
-
-json
-{
-  "name": "John",
-  "document": "12345678900"
-}
-Response:
-
-json
-{
-  "account_id": "1"
-}
+grpcurl -plaintext -d '{ "name": "John", "document": "12345678900" }' \
+  localhost:50051 AccountService.CreateAccount
 ```
 
 List Accounts
 
 ```bash
-Response:
-
-json
-{
-  "accounts": [
-    {
-      "account_id": "1",
-      "name": "John",
-      "document": "12345678900",
-      "created_at": {
-        "seconds": "-62135596800",
-        "nanos": 0
-      },
-      "updated_at": {
-        "seconds": "-62135596800",
-        "nanos": 0
-      }
-    }
-  ]
-}
+grpcurl -plaintext localhost:50051 AccountService.ListAccounts
 ```
 
 Get Account by ID
 
 ```bash
-Request:
-
-json
-{ "account_id": 1 }
-Response:
-
-json
-{
-  "account_id": "1",
-  "name": "John",
-  "document": "12345678900",
-  "created_at": {
-    "seconds": "-62135596800",
-    "nanos": 0
-  },
-  "updated_at": {
-    "seconds": "-62135596800",
-    "nanos": 0
-  }
-}
+grpcurl -plaintext -d '{ "account_id": 1 }' \
+  localhost:50051 AccountService.GetAccountById
 ```
 
 Create Transaction - transaction_type_id = 1 (CASH_IN)/transaction_type_id = 2 (CASH_OUT)
 
 ```bash
-Request:
-
-json
-{
-  "account_id": 1,
-  "transaction_type_id": 1,
-  "amount": 1.45
-}
-Response:
-
-json
-{
-  "transaction_id": "1"
-}
+grpcurl -plaintext -d '{ "account_id": 1, "transaction_type_id": 1, "amount": 1.45 }' \
+  localhost:50051 TransactionService.CreateTransaction
 ```
 
 List Transactions
 
 ```bash
-Response:
-
-json
-{
-  "transactions": [
-    {
-      "transaction_id": "1",
-      "account_id": "1",
-      "transaction_type_id": 1,
-      "amount": 1.45,
-      "transaction_date": {
-        "seconds": "1745630561",
-        "nanos": 535641000
-      }
-    }
-  ]
-}
+grpcurl -plaintext localhost:50051 TransactionService.ListTransactions
 ```
 
 List Transaction Amount by Document
 
 ```bash
-Request:
-
-json
-{
-  "document": "12345678900"
-}
-Response:
-
-json
-{
-  "transactionsAmount": [
-    {
-      "name": "John",
-      "document": "12345678900",
-      "amount": -1.45
-    }
-  ]
-}
+grpcurl -plaintext -d '{ "document": "12345678900" }' \
+  localhost:50051 TransactionService.ListTransactionAmount
 ```
 
 List Transactions by Account ID
 
 ```bash
-Request:
+grpcurl -plaintext -d '{ "account_id": 1 }' \
+  localhost:50051 TransactionService.ListTransactionsByAccountId
+```
 
-json
-{
-  "account_id": 1
-}
-Response:
+List Transactions by Document
 
-json
-{
-  "transactionsByAccount": [
-    {
-      "transaction_id": "1",
-      "name": "John",
-      "document": "12345678900",
-      "description": "CASH_IN",
-      "amount": 1.45,
-      "transaction_date": {
-        "seconds": "1745630561",
-        "nanos": 535641000
-      }
-    }
-  ]
-}
+```bash
+grpcurl -plaintext -d '{ "document": "12345678900" }' \
+  localhost:50051 TransactionService.ListTransactionsByDocument
 ```
 
 Docker Compose Structure
