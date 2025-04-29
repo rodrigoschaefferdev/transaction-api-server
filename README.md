@@ -17,8 +17,9 @@ cd transaction-api-server
 Start the containers:
 ```
 
-sh
+```bash
 docker-compose up -d
+```
 This will start a PostgreSQL server (postgres) and the transaction API (transaction-api-server) running on port 50051.
 
 Check the service logs:
