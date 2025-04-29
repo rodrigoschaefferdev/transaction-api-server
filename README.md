@@ -11,10 +11,11 @@ This is a **bank transaction API service**, developed in **Go**, using **gRPC** 
 ## Environment Setup  
 
 Clone the repository:  
-```sh
+```bash
 git clone 
 cd transaction-api-server
 Start the containers:
+```
 
 sh
 docker-compose up -d
@@ -22,10 +23,14 @@ This will start a PostgreSQL server (postgres) and the transaction API (transact
 
 Check the service logs:
 
-sh
+```bash
 docker-compose logs -f transaction-api-server
 gRPC Endpoints
+```
+
 Create Account
+
+```bash
 Request:
 
 json
@@ -39,7 +44,11 @@ json
 {
   "account_id": "1"
 }
+```
+
 List Accounts
+
+```bash
 Response:
 
 json
@@ -60,7 +69,11 @@ json
     }
   ]
 }
+```
+
 Get Account by ID
+
+```bash
 Request:
 
 json
@@ -81,7 +94,11 @@ json
     "nanos": 0
   }
 }
+```
+
 Create Transaction - transaction_type_id = 1 (CASH_IN)/transaction_type_id = 2 (CASH_OUT)
+
+```bash
 Request:
 
 json
@@ -96,7 +113,11 @@ json
 {
   "transaction_id": "1"
 }
+```
+
 List Transactions
+
+```bash
 Response:
 
 json
@@ -114,7 +135,11 @@ json
     }
   ]
 }
+```
+
 List Transaction Amount by Document
+
+```bash
 Request:
 
 json
@@ -133,7 +158,11 @@ json
     }
   ]
 }
+```
+
 List Transactions by Account ID
+
+```bash
 Request:
 
 json
@@ -158,6 +187,8 @@ json
     }
   ]
 }
+```
+
 Docker Compose Structure
 Your environment uses Docker Compose to orchestrate the services:
 
@@ -167,5 +198,7 @@ Transaction API (transaction-api-server): gRPC service running on port 50051.
 
 To stop the containers, run:
 
+```bash
 sh
 docker-compose down
+```
