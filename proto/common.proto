@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package common;
+
+option go_package = "/pb;proto";
+
+message AccountId {
+  int64 account_id = 1;
+}

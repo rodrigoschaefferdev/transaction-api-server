@@ -1,0 +1,30 @@
+
+services:
+  postgres:
+    image: transaction-postgres-db:latest
+    build:
+      context: .
+      dockerfile: docker/postgres.Dockerfile
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=postgres_db
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks: 
+      - network 
+  transaction-api-server:
+    image: transaction-api-server:latest
+    build:
+      context: .
+      dockerfile: docker/transaction-api-server.Dockerfile
+    ports:
+      - "50051:50051"
+    networks: 
+      - network 
+
+networks: 
+  network: 
+    driver: bridge
